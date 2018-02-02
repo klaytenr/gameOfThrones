@@ -6,13 +6,11 @@
     <script>
         $(document).ready(function(){
             $(document).on('click', 'img', function(){
-                $("#info").children().hide();
                 var id = $(this).attr("id");
                 $.get("https://anapioficeandfire.com/api/houses/"+id, function(res){
-                    var name= "";
-                    name+="<h1>"+res.name+"</h1>";
-                    $("#info").append(name);
                     var info= "";
+                    info+="<h1>"+res.name+"</h1>";
+                    info+= name;
                     info += "<h2>Words</h2>";
                     info += "<ul>"; 
                     info += "<li>" + res.words + "</li>";
@@ -21,7 +19,7 @@
                     info+="<ul>"
                     info += "<li>" + res.titles + "</li>";
                     info+="</ul>"
-                    $("#info").append(info);
+                    $("#info").html(info);
                 }, "json");
             });
         });
@@ -53,7 +51,7 @@
             <img id="362" src="stark.jpg" alt="House Stark">
             <img id="378" src="targaryen.jpg" alt="House Targaryen">
             <img id="229" src="lannister.jpg" alt="House Lannister">
-            <img id="15" src="baratheon.png" alt="House Baratheon">
+            <img id="17hy" src="baratheon.png" alt="House Baratheon">
         </div>
         <div id="info"></div>
     </div>

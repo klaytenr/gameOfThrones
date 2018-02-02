@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var htmlstring="";
+        for(var x=1; x<=444; x++){
+            htmlstring+='<p>'+name+'</p>';
+        }
+        $("#houses").append(htmlstring);
+        $(document).on('click', 'p', function(){
+            var id = $(this).attr("id");
+            $.get("https://anapioficeandfire.com/api/houses/"+id, function(res){
+                var info= "";
+                info+="<h1>"+res.name+"</h1>";
+                // info+= image
+                $("#info").append('<p>'+name+'</p>');
+                    info += "<h2>Words</h2>";
+                    info += "<ul>"; 
+                    info += "<li>" + res.words + "</li>";
+                    info+="</ul>"
+                    info += "<h2>Titles</h2>";
+                    info+="<ul>"
+                    info += "<li>" + res.titles + "</li>";
+                    info+="</ul>"
+                $("#info").append(info);
+            }, "json");
+        })
+    })
+    </script>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #info h1{
+            font-size: 40px;
+            text-align: center;
+        }
+        #wrapper{
+            background-color: red;
+            width: 1900px;
+            height: 1200px;
+            border: solid 3px black;
+        }
+        #info img{
+            height: 330px;
+            margin: 0 0 0 35px;
+            border: 1px black solid;
+        }
+        #houses{
+            background-color: white;
+            display: inline-block;
+            width: 1300px;
+        }
+        #info{
+            border: solid blue 4px;
+            background-color: white;
+            width: 400px;
+            height: 800px;
+            display: inline-block;
+            margin: 80px 0 0 100px;
+            vertical-align: top;
+        }
+        #info ul{
+            margin: 25px 0 0 45px;
+        }
+        #info p{
+            margin: 25px 0 0 25px;
+        }
+        #info h2{
+            margin: 10px 0 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="houses"></div>
+        <div id="info"></div>
+    </div>
+</body>
+</html>
